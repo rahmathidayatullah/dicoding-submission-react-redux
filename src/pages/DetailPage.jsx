@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import parse from 'html-react-parser';
+import moment from 'moment';
 import { fetchThreadDetail } from '../states/threadDetail/action';
 import ButtonCategory from '../components/ButtonCategory';
-// import ButtonLike from '../components/ButtonLike';
-// import ButtonDislike from '../components/ButtonDislike';
 import InputComment from '../components/InputComment';
 import ListComment from '../components/ListComment';
-import parse from 'html-react-parser';
-import { getInitials } from '../utils';
+import getInitials from '../utils';
 import Initials from '../components/Initials';
-import moment from 'moment';
 import 'moment/locale/id';
 import { commentThread } from '../states/comment/action';
 
@@ -47,7 +45,8 @@ function DetailPage() {
             />
             {thread.owner.name}
           </div>
-          &nbsp;&nbsp;&nbsp;<span>{moment(thread.createdAt).fromNow()}</span>
+          &nbsp;&nbsp;&nbsp;
+          <span>{moment(thread.createdAt).fromNow()}</span>
         </div>
       </div>
       <InputComment submitComment={submitComment} />

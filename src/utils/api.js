@@ -1,7 +1,11 @@
 const api = (() => {
   const BASE_URL = 'https://forum-api.dicoding.dev/v1';
 
-  async function _fetchWithAuth(url, options = {}) {
+  function getAccessToken() {
+    return localStorage.getItem('accessToken');
+  }
+
+  async function fetchWithAuth(url, options = {}) {
     return fetch(url, {
       ...options,
       headers: {
@@ -13,10 +17,6 @@ const api = (() => {
 
   function putAccessToken(token) {
     localStorage.setItem('accessToken', token);
-  }
-
-  function getAccessToken() {
-    return localStorage.getItem('accessToken');
   }
 
   async function register(name, email, password) {
@@ -92,7 +92,7 @@ const api = (() => {
   }
 
   async function getOwnProfile() {
-    const response = await _fetchWithAuth(`${BASE_URL}/users/me`);
+    const response = await fetchWithAuth(`${BASE_URL}/users/me`);
 
     const responseJson = await response.json();
 
@@ -109,8 +109,8 @@ const api = (() => {
     return user;
   }
 
-  async function createThread({ title, body, category }) {
-    const response = await fetch(`${BASE_URL}/register`, {
+  async function createThread(title, body, category) {
+    const response = await fetchWithAuth(`${BASE_URL}/threads`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -173,18 +173,15 @@ const api = (() => {
   }
 
   async function createComment(id, content) {
-    const response = await _fetchWithAuth(
-      `${BASE_URL}/threads/${id}/comments`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          content,
-        }),
-      }
-    );
+    const response = await fetchWithAuth(`${BASE_URL}/threads/${id}/comments`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        content,
+      }),
+    });
 
     const responseJson = await response.json();
     const { status, message } = responseJson;
@@ -202,7 +199,7 @@ const api = (() => {
 
   // like main threads
   async function upVoteThread(id) {
-    const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}/up-vote`, {
+    const response = await fetchWithAuth(`${BASE_URL}/threads/${id}/up-vote`, {
       method: 'POST',
     });
 
@@ -221,11 +218,11 @@ const api = (() => {
   }
   // unlike main threads
   async function downVoteThread(id) {
-    const response = await _fetchWithAuth(
+    const response = await fetchWithAuth(
       `${BASE_URL}/threads/${id}/down-vote`,
       {
         method: 'POST',
-      }
+      },
     );
 
     const responseJson = await response.json();
@@ -243,11 +240,11 @@ const api = (() => {
   }
   // netral like or unlike main threads
   async function neutralVoteThread(id) {
-    const response = await _fetchWithAuth(
+    const response = await fetchWithAuth(
       `${BASE_URL}/threads/${id}/neutral-vote`,
       {
         method: 'POST',
-      }
+      },
     );
 
     const responseJson = await response.json();
@@ -265,11 +262,11 @@ const api = (() => {
   }
   // like sub threads
   async function upVoteComment(idThread, idComment) {
-    const response = await _fetchWithAuth(
+    const response = await fetchWithAuth(
       `${BASE_URL}/threads/${idThread}/comments/${idComment}/up-vote`,
       {
         method: 'POST',
-      }
+      },
     );
 
     const responseJson = await response.json();
@@ -287,11 +284,11 @@ const api = (() => {
   }
   // unlike sub threads
   async function downVoteComment(idThread, idComment) {
-    const response = await _fetchWithAuth(
+    const response = await fetchWithAuth(
       `${BASE_URL}/threads/${idThread}/comments/${idComment}/down-vote`,
       {
         method: 'POST',
-      }
+      },
     );
 
     const responseJson = await response.json();
@@ -309,11 +306,11 @@ const api = (() => {
   }
   // netral like or unlike sub threads
   async function neutralVoteComment(idThread, idComment) {
-    const response = await _fetchWithAuth(
+    const response = await fetchWithAuth(
       `${BASE_URL}/threads/${idThread}/comments/${idComment}/neutral-vote`,
       {
         method: 'POST',
-      }
+      },
     );
 
     const responseJson = await response.json();

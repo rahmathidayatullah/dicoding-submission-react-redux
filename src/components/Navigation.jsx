@@ -5,9 +5,9 @@ import {
   AiOutlineBarChart,
   AiOutlineLogin,
 } from 'react-icons/ai';
-import { string, func,shape } from 'prop-types';
+import { string, func, shape } from 'prop-types';
 
-function Navigation({authUser,signOut}) {
+function Navigation({ authUser, signOut }) {
   return (
     <div className="navigation">
       <h1>
@@ -24,21 +24,27 @@ function Navigation({authUser,signOut}) {
         </div>
         <div className="navigation-list__item">
           <AiOutlineLogin />
-          {authUser.id === '' ? <Link to="/login">Login</Link> : <button style={{backgroundColor:"transparent",border:'none'}} onClick={signOut}>Logout</button>}
+          {authUser.id === '' ? <Link to="/login">Login</Link> : <button type="button" style={{ backgroundColor: 'transparent', border: 'none' }} onClick={signOut}>Logout</button>}
         </div>
       </div>
     </div>
   );
 }
 
+const authUserShape = {
+  avatar: string,
+  email: string,
+  id: string,
+  name: string,
+};
+
 Navigation.propTypes = {
-  authUser: shape({
-    avatar:string,
-    email:string,
-    id:string,
-    name:string
-  }),
-  signOut:func.isRequired
+  authUser: shape(authUserShape),
+  signOut: func.isRequired,
+};
+
+Navigation.defaultProps = {
+  authUser: {},
 };
 
 export default Navigation;

@@ -3,6 +3,7 @@ import api from '../../utils/api';
 const ActionType = {
   FETCH_LIST_THREADS: 'FETCH_LIST_THREADS',
   RECEIVE_COMMENT: 'RECEIVE_COMMENT',
+  SUCCESS_CREATE_THREAD: 'SUCCESS_CREATE_THREAD',
 };
 
 function receiveThreadsActionCreator(threads) {
@@ -25,4 +26,20 @@ function fetchThreads() {
   };
 }
 
-export { ActionType, fetchThreads, receiveThreadsActionCreator };
+function createThread(title, content, category) {
+  return async (dispatch) => {
+    try {
+      await api.createThread(title, content, category);
+      dispatch(fetchThreads());
+      dispatch({
+        type: ActionType.SUCCESS_CREATE_THREAD,
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+}
+
+export {
+  ActionType, fetchThreads, createThread, receiveThreadsActionCreator,
+};

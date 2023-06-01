@@ -6,19 +6,21 @@ import { asyncSetAuthUser } from '../states/authUser/action';
 
 function loginPage() {
   const dispatch = useDispatch();
-  const states = useSelector((states) => states);
+  const state = useSelector((states) => states);
   const onLogin = ({ email, password }) => {
     dispatch(asyncSetAuthUser({ email, password }));
   };
 
-  useEffect(() => {}, [dispatch, states]);
+  useEffect(() => {}, [dispatch, state]);
 
   return (
     <section className="container-login">
       <h1>Form Login</h1>
       <LoginInput login={onLogin} />
       <p>
-        Don&apos;t have an account? <Link to="/register">Register</Link>
+        Don&apos;t have an account?
+        &nbsp;
+        <Link to="/register">Register</Link>
       </p>
     </section>
   );

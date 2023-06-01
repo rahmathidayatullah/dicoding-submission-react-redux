@@ -9,9 +9,7 @@ function ListLeaderBoards({ leaderboards }) {
         <p>Pengguna</p>
         <p>Skor</p>
       </div>
-      {leaderboards.map((items, index) => {
-        return <ItemLeaderBoards key={index} leaderboards={items} />;
-      })}
+      {leaderboards.map((items) => <ItemLeaderBoards key={items.user.id} leaderboards={items} />)}
     </div>
   );
 }

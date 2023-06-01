@@ -1,12 +1,17 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { IoIosAddCircleOutline } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 import ListThread from '../components/ListThread';
-import { asyncPopulateUsersAndThreads } from '../states/shared/action';
+import asyncPopulateUsersAndThreads from '../states/shared/action';
 
 function HomePage() {
   const dispatch = useDispatch();
 
-  const { threads = [], users = [] } = useSelector((states) => states);
+  const {
+    threads: { threads },
+    users = [],
+  } = useSelector((states) => states);
 
   useEffect(() => {
     dispatch(asyncPopulateUsersAndThreads());
@@ -18,7 +23,12 @@ function HomePage() {
   }));
 
   return (
-    <div>{threadList.length ? <ListThread threads={threadList} /> : ''}</div>
+    <div>
+      {threadList.length ? <ListThread threads={threadList} /> : ''}
+      <Link to="/thread/add" className="btn-add-thread">
+        <IoIosAddCircleOutline size={50} />
+      </Link>
+    </div>
   );
 }
 

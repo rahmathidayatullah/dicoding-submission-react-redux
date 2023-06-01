@@ -14,10 +14,10 @@ function receiveUsersActionCreator(users) {
   };
 }
 
-function asyncRegisterUser( name, email, password ) {
+function asyncRegisterUser(name, email, password) {
   return async () => {
     try {
-      await api.register( name, email, password );
+      await api.register(name, email, password);
     } catch (error) {
       alert(error.message);
     }
@@ -35,4 +35,6 @@ function fetchUsers() {
   };
 }
 
-export { ActionType, receiveUsersActionCreator, asyncRegisterUser, fetchUsers };
+export {
+  ActionType, receiveUsersActionCreator, asyncRegisterUser, fetchUsers,
+};

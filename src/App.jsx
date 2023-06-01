@@ -13,6 +13,7 @@ import Navigation from './components/Navigation';
 import DetailPage from './pages/DetailPage';
 import LeaderBoards from './pages/LeaderBoards';
 import { asyncUnsetAuthUser } from './states/authUser/action';
+import AddThreadPage from './pages/AddThreadPage';
 // import { asyncUnsetAuthUser } from './states/authUser/action';
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
   const dispatch = useDispatch();
 
   const { authUser = null, isPreload = false } = useSelector(
-    (states) => states
+    (states) => states,
   );
 
   const onSignOut = () => {
@@ -62,6 +63,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/leaderboards" element={<LeaderBoards />} />
               <Route path="/threads/:id" element={<DetailPage />} />
+              <Route path="/thread/add" element={<AddThreadPage />} />
             </Routes>
           </main>
         </div>
@@ -81,6 +83,7 @@ function App() {
             <Route path="/*" element={<HomePage />} />
             <Route path="/leaderboards" element={<LeaderBoards />} />
             <Route path="/threads/:id" element={<DetailPage />} />
+            <Route path="/thread/add" element={<AddThreadPage />} />
           </Routes>
         </main>
       </div>

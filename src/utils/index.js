@@ -1,7 +1,7 @@
 function getInitials(name) {
-  var parts = name.split(' ');
-  var initials = '';
-  for (var i = 0; i < parts.length; i++) {
+  const parts = name.split(' ');
+  let initials = '';
+  for (let i = 0; i < parts.length; i++) {
     if (parts[i].length > 0 && parts[i] !== '') {
       initials += parts[i][0];
     }
@@ -9,4 +9,4 @@ function getInitials(name) {
   return initials.toUpperCase();
 }
 
-export { getInitials };
+export default getInitials;

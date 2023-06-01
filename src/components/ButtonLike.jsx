@@ -3,17 +3,17 @@ import { number, func } from 'prop-types';
 
 import { AiOutlineLike, AiTwotoneLike } from 'react-icons/ai';
 
-function ButtonLike({ number, handleClick }) {
+function ButtonLike({ nbrLK, handleClick }) {
   return (
-    <button onClick={handleClick} className="btn-action">
-      {number !== 0 ? <AiTwotoneLike size={18} /> : <AiOutlineLike size={18} />}
-      <span>{number}</span>
+    <button type="button" onClick={handleClick} className="btn-action">
+      {nbrLK !== 0 ? <AiTwotoneLike size={18} /> : <AiOutlineLike size={18} />}
+      <span>{nbrLK}</span>
     </button>
   );
 }
 
 ButtonLike.propTypes = {
-  number: number.isRequired,
+  nbrLK: number.isRequired,
   handleClick: func.isRequired,
 };
 

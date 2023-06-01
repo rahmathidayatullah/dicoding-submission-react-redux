@@ -1,5 +1,5 @@
 import api from '../../utils/api';
-import { asyncPopulateUsersAndThreads } from '../shared/action';
+import asyncPopulateUsersAndThreads from '../shared/action';
 import { fetchThreadDetail } from '../threadDetail/action';
 
 const ActionType = {

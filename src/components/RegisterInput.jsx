@@ -31,7 +31,7 @@ function RegisterInput({ register }) {
         onChange={onPasswordChange}
         placeholder="Password"
       />
-      <Button handleClick={() => register( name, email, password )}>
+      <Button handleClick={() => register(name, email, password)}>
         Register
       </Button>
     </form>

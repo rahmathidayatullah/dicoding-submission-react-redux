@@ -3,8 +3,11 @@ import { string } from 'prop-types';
 
 function ButtonCategory({ category }) {
   return (
-    <button className="thread-item-cateogry">
-      <p>#{category}</p>
+    <button type="button" className="thread-item-cateogry">
+      <p>
+        #
+        {category}
+      </p>
     </button>
   );
 }

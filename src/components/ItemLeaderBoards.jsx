@@ -1,7 +1,7 @@
 import React from 'react';
-import Initials from './Initials';
 import { string, number, shape } from 'prop-types';
-import { getInitials } from '../utils/index';
+import Initials from './Initials';
+import getInitials from '../utils/index';
 
 function ItemLeaderBoards({ leaderboards }) {
   return (
@@ -18,20 +18,27 @@ function ItemLeaderBoards({ leaderboards }) {
   );
 }
 
+const userShapes = {
+  avatar: string.isRequired,
+  email: string.isRequired,
+  id: string.isRequired,
+  name: string.isRequired,
+};
+
 const leaderBoardsItemShape = {
+  index: number,
   score: number.isRequired,
-  user: shape({
-    avatar: string.isRequired,
-    email: string.isRequired,
-    id: string.isRequired,
-    name: string.isRequired,
-  }),
+  user: shape(userShapes),
 };
 
 ItemLeaderBoards.propTypes = {
   leaderboards: shape(leaderBoardsItemShape),
 };
 
-export { leaderBoardsItemShape };
+ItemLeaderBoards.defaultProps = {
+  leaderboards: {},
+};
+
+export { leaderBoardsItemShape, userShapes };
 
 export default ItemLeaderBoards;

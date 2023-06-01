@@ -1,13 +1,13 @@
 import React from 'react';
+import { func } from 'prop-types';
 import useInput from '../hooks/useInput';
 import Button from './Button';
-import { func } from 'prop-types';
 
 function InputComment({ submitComment }) {
   const [comment, setComment, setValue] = useInput('');
 
   const submit = () => {
-    submitComment({ comment, setComment });
+    submitComment({ comment });
     setValue('');
   };
 
