@@ -11,6 +11,7 @@
   },
   "plugins": ["react"],
   "rules": {
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "no-alert": "off"
   }
 }
