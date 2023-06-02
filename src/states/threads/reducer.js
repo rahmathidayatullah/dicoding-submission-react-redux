@@ -2,7 +2,7 @@ import { ActionType } from './action';
 
 const initialState = {
   threads: [],
-  success_create: false,
+  successCreate: false,
 };
 
 function threadsReducer(state = initialState, action = {}) {
@@ -15,12 +15,12 @@ function threadsReducer(state = initialState, action = {}) {
     case ActionType.SUCCESS_CREATE_THREAD:
       return {
         ...state,
-        success_create: true,
+        successCreate: true,
       };
     case 'RESET_STATUS':
       return {
         ...state,
-        success_create: null,
+        successCreate: null,
       };
     default:
       return state;

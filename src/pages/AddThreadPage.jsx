@@ -18,10 +18,12 @@ function AddThreadPage() {
   useEffect(() => {
     if (successCreate) {
       navigate('/');
+    }
+    return (() => {
       dispatch({
         type: 'RESET_STATUS',
       });
-    }
+    });
   }, [dispatch, successCreate]);
 
   return (
