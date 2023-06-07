@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "dev": "vite",
-    "build": "vite build",
+    "build": "react-scripts build",
     "preview": "vite preview",
     "test": "vitest",
     "e2e": "cypress run",
