@@ -29,12 +29,12 @@ function ItemThread(props) {
     },
   } = props;
 
-  const { authUser = null } = useSelector((states) => states);
+  const { authUser: { userAuth = null } } = useSelector((states) => states);
   const dispatch = useDispatch();
   moment.locale('id');
 
   function checkExistUser(votesBy) {
-    const result = votesBy.filter((item) => item === authUser.id);
+    const result = votesBy.filter((item) => item === userAuth.id);
     return result.length > 0;
   }
 

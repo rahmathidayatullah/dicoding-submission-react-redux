@@ -27,11 +27,11 @@ function ItemComment(props) {
 
   moment.locale('id');
 
-  const { authUser = null } = useSelector((states) => states);
+  const { authUser: { userAuth = null } } = useSelector((states) => states);
   const dispatch = useDispatch();
 
   function checkExistUser(votesBy) {
-    const result = votesBy.filter((item) => item === authUser.id);
+    const result = votesBy.filter((item) => item === userAuth.id);
     return result.length > 0;
   }
 

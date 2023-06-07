@@ -1,13 +1,38 @@
 import { ActionType } from './action';
 
-function authUserReducer(authUser = null, action = {}) {
+const initialState = {
+  statusRegister: {
+    status: '',
+  },
+  userAuth: null,
+};
+
+function authUserReducer(state = initialState, action = {}) {
   switch (action.type) {
     case ActionType.SET_AUTH_USER:
-      return action.payload.authUser;
+      return {
+        ...state,
+        userAuth: action.payload.authUser,
+      };
     case ActionType.UNSET_AUTH_USER:
-      return null;
+      return {
+        ...state,
+        userAuth: null,
+      };
+    case ActionType.REGISTER_STATUS:
+      return {
+        ...state,
+        statusRegister: action.payload.status,
+      };
+    case 'RESET_STATUS_REGISTER':
+      return {
+        ...state,
+        statusRegister: {
+          ...state.statusRegister, status: '',
+        },
+      };
     default:
-      return authUser;
+      return state;
   }
 }
 

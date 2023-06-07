@@ -4,6 +4,7 @@ import api from '../../utils/api';
 const ActionType = {
   SET_AUTH_USER: 'SET_AUTH_USER',
   UNSET_AUTH_USER: 'UNSET_AUTH_USER',
+  REGISTER_STATUS: 'REGISTER_STATUS',
 };
 
 function setAuthUserActionCreator(authUser) {
@@ -11,6 +12,14 @@ function setAuthUserActionCreator(authUser) {
     type: ActionType.SET_AUTH_USER,
     payload: {
       authUser,
+    },
+  };
+}
+function setStatusRegisterActionCreator(status) {
+  return {
+    type: ActionType.REGISTER_STATUS,
+    payload: {
+      status,
     },
   };
 }
@@ -49,4 +58,5 @@ export {
   unsetAuthUserActionCreator,
   asyncSetAuthUser,
   asyncUnsetAuthUser,
+  setStatusRegisterActionCreator,
 };

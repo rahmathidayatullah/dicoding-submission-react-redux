@@ -1,26 +1,21 @@
 import React, { useEffect } from 'react';
-// import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from './components/Loading';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
-// import Navigation from './components/Navigation';
 import RegisterPage from './pages/RegisterPage';
-// import DetailPage from './pages/DetailPage';
 import { asyncPreloadProcess } from './states/isPreload/action';
 import Navigation from './components/Navigation';
 import DetailPage from './pages/DetailPage';
 import LeaderBoards from './pages/LeaderBoards';
 import { asyncUnsetAuthUser } from './states/authUser/action';
 import AddThreadPage from './pages/AddThreadPage';
-// import { asyncUnsetAuthUser } from './states/authUser/action';
 
 function App() {
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { authUser = null, isPreload = false } = useSelector(
+  const { authUser: { userAuth = null }, isPreload = false } = useSelector(
     (states) => states,
   );
 
@@ -32,18 +27,12 @@ function App() {
     dispatch(asyncPreloadProcess());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (authUser !== null) {
-      // navigate('/')
-    }
-  }, [authUser]);
-
   if (isPreload) {
     return null;
   }
 
-  if (authUser === null) {
-    const userAuth = {
+  if (userAuth === null) {
+    const authUser = {
       avatar: '',
       email: '',
       id: '',
@@ -53,7 +42,7 @@ function App() {
       <>
         <Loading />
         <header>
-          <Navigation authUser={userAuth} signOut={onSignOut} />
+          <Navigation authUser={authUser} signOut={onSignOut} />
         </header>
         <div className="app-container">
           <main>
@@ -75,7 +64,7 @@ function App() {
     <>
       <Loading />
       <header>
-        <Navigation authUser={authUser} signOut={onSignOut} />
+        <Navigation authUser={userAuth} signOut={onSignOut} />
       </header>
       <div className="app-container">
         <main>

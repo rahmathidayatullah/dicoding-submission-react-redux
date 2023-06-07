@@ -1,4 +1,5 @@
 import api from '../../utils/api';
+import { setStatusRegisterActionCreator } from '../authUser/action';
 
 const ActionType = {
   RECEIVE_USERS: 'RECEIVE_USERS',
@@ -15,10 +16,18 @@ function receiveUsersActionCreator(users) {
 }
 
 function asyncRegisterUser(name, email, password) {
-  return async () => {
+  return async (dispatch) => {
     try {
       await api.register(name, email, password);
+      const statusRegister = {
+        status: 'success',
+      };
+      dispatch(setStatusRegisterActionCreator(statusRegister));
     } catch (error) {
+      const statusRegister = {
+        status: 'fail',
+      };
+      dispatch(setStatusRegisterActionCreator(statusRegister));
       alert(error.message);
     }
   };

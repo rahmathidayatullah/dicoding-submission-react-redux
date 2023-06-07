@@ -1,17 +1,24 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LoginInput from '../components/LoginInput';
 import { asyncSetAuthUser } from '../states/authUser/action';
 
 function loginPage() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const state = useSelector((states) => states);
+  const { authUser: { userAuth = null } } = useSelector(
+    (states) => states,
+  );
   const onLogin = ({ email, password }) => {
     dispatch(asyncSetAuthUser({ email, password }));
   };
 
-  useEffect(() => {}, [dispatch, state]);
+  useEffect(() => {
+    if (userAuth !== null) {
+      navigate('/');
+    }
+  }, [userAuth]);
 
   return (
     <section className="container-login">
