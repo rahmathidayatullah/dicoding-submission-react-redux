@@ -52,7 +52,7 @@ describe('fetchThreadDetail thunk', () => {
   afterEach(() => {
     api.getDetailThread = api.tempGetDetailThread;
 
-    // delete backup data
+    // delete backup data test
     delete api.tempGetDetailThread;
   });
 
