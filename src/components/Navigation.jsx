@@ -11,7 +11,7 @@ function Navigation({ authUser, signOut }) {
   return (
     <div className="navigation">
       <h1>
-        <Link to="/">Home</Link>
+        <Link to="/">Home App</Link>
       </h1>
       <div className="navigation-list">
         <div className="navigation-list__item">
