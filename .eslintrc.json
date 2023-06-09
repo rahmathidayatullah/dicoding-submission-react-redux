@@ -13,6 +13,7 @@
   "plugins": ["react","cypress"],
   "rules": {
     "no-plusplus": "off",
-    "no-alert": "off"
+    "no-alert": "off",
+    "react/button-has-type": "off"
   }
 }

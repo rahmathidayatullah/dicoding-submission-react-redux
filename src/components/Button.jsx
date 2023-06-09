@@ -1,11 +1,13 @@
 import React from 'react';
 import { string, func } from 'prop-types';
 
-function Button({ children, handleClick, className }) {
+function Button({
+  children, handleClick, className, type,
+}) {
   return (
     <button
       className={`btn btn-primary ${className}`}
-      type="button"
+      type={type}
       onClick={handleClick}
     >
       {children}
@@ -15,12 +17,15 @@ function Button({ children, handleClick, className }) {
 
 Button.propTypes = {
   children: string.isRequired,
-  handleClick: func.isRequired,
+  handleClick: func,
   className: string,
+  type: string,
 };
 
 Button.defaultProps = {
   className: '',
+  type: 'button',
+  handleClick: () => null,
 };
 
 export default Button;
