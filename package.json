@@ -28,7 +28,7 @@
     "e2e": "cypress run",
     "eject": "react-scripts eject",
     "lint": "eslint ./src --ext .jsx --ext .js",
-    "ci:test": "vitest --no-watch && start-server-and-test start http://localhost:3000 e2e"
+    "ci:test": "vitest --no-watch && start-server-and-test start http-get://localhost:3000 e2e"
   },
   "eslintConfig": {
     "extends": [
