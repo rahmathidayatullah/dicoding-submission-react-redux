@@ -20,15 +20,15 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=5173 react-scripts start",
     "dev": "vite",
-    "build": "react-scripts build",
+    "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
     "e2e": "cypress run",
     "eject": "react-scripts eject",
     "lint": "eslint ./src --ext .jsx --ext .js",
-    "ci:test": "vitest --no-watch && start-server-and-test start http-get://localhost:3000 e2e"
+    "ci:test": "vitest --no-watch && start-server-and-test start http-get://0.0.0.0:5173 e2e"
   },
   "eslintConfig": {
     "extends": [
